@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s3-access-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: s3-access
+  template:
+    metadata:
+      labels:
+        app: s3-access
+    spec:
+      serviceAccountName: s3-access-sa
+      containers:
+      - name: s3-access-container
+        image: <account-id>.dkr.ecr.ap-southeast-1.amazonaws.com/my-app:latest
